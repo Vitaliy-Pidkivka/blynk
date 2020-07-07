@@ -1,0 +1,36 @@
+.items {
+  width: 350px;
+  background-color: #efefef;
+  min-height: 300px;
+  box-shadow: 0 0 10px black;
+  padding: 20px;
+
+  h2 {
+    color: gray;
+  }
+
+  &__input-group {
+    display: flex;
+    justify-content: space-between;
+
+    input {
+      padding: 0 10px;
+      margin-right: 8px;
+      flex-grow: 1;
+    }
+
+    button {
+      text-transform: capitalize;
+    }
+  }
+
+  &__list {
+    margin-top: 15px;
+  }
+}
+.error{
+  box-shadow: 0 0 4px red;
+  border-color: red;
+  outline-color: red;
+
+}

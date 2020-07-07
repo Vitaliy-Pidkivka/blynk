@@ -1,0 +1,45 @@
+.comments {
+  width: 350px;
+  background-color: #efefef;
+  min-height: 300px;
+  box-shadow: 0 0 10px black;
+  padding: 20px;
+
+  h2 {
+    color: gray;
+  }
+
+  &__input-group {
+    display: flex;
+    justify-content: space-between;
+
+    input,textarea {
+      display: block;
+      margin-right: 8px;
+      flex-grow: 1;
+      height: 100%;
+    }
+    input{
+      height: 55px;
+      cursor: pointer;
+    }
+    textarea{
+      padding: 10px 10px;
+      resize: none;
+    }
+
+    button {
+      text-transform: capitalize;
+      flex-shrink: 0;
+    }
+  }
+
+  &__list {
+    margin-top: 15px;
+  }
+}
+.error{
+  box-shadow: 0 0 4px red;
+  border-color: red;
+  outline-color: red;
+}

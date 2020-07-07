@@ -1,26 +1,52 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Sidebar from "./components/Sidebar/Sidebar";
+import Items from "./components/Items/Items";
+import {connect} from "react-redux";
+import {
+    addComment,
+    addItem,
+    changeComment,
+    removeComment,
+    removeItem,
+    setNewItemName,
+    toggleItem
+} from "./redux/appReducer";
+import Comments from "./components/Comments/Comments";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = ({items, setNewItemName, addItem, newItemName,removeItem,
+    toggleItem,addComment, removeComment, changeComment}) => {
+    return (
+        <div className="App">
+            <Sidebar/>
+            <div className="content">
+                <Items items={items}
+                       setNewItemName={setNewItemName}
+                       addItem={addItem}
+                       newItemName={newItemName}
+                       removeItem={removeItem}
+                       toggleItem={toggleItem}
+                />
+                {items.map(item => {
+                    if(item.isActive){
+                        return  <Comments comments={item.comments}
+                                          itemId={item.id}
+                                          addComment={addComment}
+                                          key={item.id}
+                                          removeComment={removeComment}
+                                          changeComment={changeComment}
+                        />
+                    }
+                })}
+            </div>
+
+        </div>
+    );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+    items: state.app.items,
+    newItemName: state.app.newItemName,
+})
+export default connect(mapStateToProps, {setNewItemName, addItem, removeItem,
+    toggleItem, addComment, removeComment, changeComment})(App);

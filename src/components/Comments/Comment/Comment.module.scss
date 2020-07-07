@@ -1,0 +1,19 @@
+.comment{
+  border: 1px solid black;
+  display: flex;
+  padding: 7px 0;
+  border-radius: 4px;
+  background-color: #fff;
+  margin-bottom: 10px;
+
+  justify-content: space-between;
+  &__color-square{
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+  &__name{
+    flex-grow: 1;
+  }
+}
