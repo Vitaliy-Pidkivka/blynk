@@ -5,6 +5,6 @@
 - `double click on comment  = set edit mode`
 - `lose focus of the comment textarea  = disable edit mode`
 - `to set new comment name press 'Enter'`
-## `If you have a problem with loading the project clear your browser LocalStorage`
+## `If you have a problem with loading the project clear your browser's LocalStorage`
 ## `Project is here `
 ## https://vitaliy-pidkivka.github.io/blynk

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import styles from './Comment.module.scss'
 
 const Comment = ({background, name, itemId, id, removeComment, changeComment}) => {
