@@ -11,7 +11,11 @@ let initialState = {
     items: [
         {
             id: 0, name: 'item 1', comments: [
-                {id: 0, name: 'double click to change, lost focus to disable, press enter to set changes', background: '#333444'},
+                {
+                    id: 0,
+                    name: 'double click to change, lost focus to disable, press enter to set changes',
+                    background: '#333444'
+                },
                 {id: 1, name: 'second comment', background: '#333444'}
             ], isActive: false
         },
@@ -35,6 +39,7 @@ const appReducer = (state = initialState, action) => {
             let newId = state.items.map(item => {
                 if (item.id > newItemId) {
                     newItemId = item.id
+                    return null
                 }
             })
             let newItem = {id: newItemId + 1, name: state.newItemName, comments: [], isActive: false}
@@ -111,7 +116,7 @@ const appReducer = (state = initialState, action) => {
                         return {
                             ...item,
                             comments: item.comments.map(comment => {
-                                if(comment.id === action.commentId){
+                                if (comment.id === action.commentId) {
                                     return {
                                         ...comment,
                                         name: action.commentName
@@ -135,9 +140,20 @@ export const setNewItemName = (name) => ({type: SET_NEW_ITEM_NAME, name});
 export const addItem = () => ({type: ADD_ITEM});
 export const removeItem = (itemId) => ({type: REMOVE_ITEM, itemId});
 export const toggleItem = (itemId) => ({type: TOGGLE_ITEM, itemId});
-export const addComment = (itemId, commentId, name, background) => ({ type: ADD_COMMENT, itemId, commentId, name, background });
-export const removeComment = (itemId, commentId) =>({ type: REMOVE_COMMENT, itemId, commentId});
-export const changeComment = (itemId, commentId, commentName) => ({ type: CHANGE_COMMENT, itemId, commentId, commentName});
+export const addComment = (itemId, commentId, name, background) => ({
+    type: ADD_COMMENT,
+    itemId,
+    commentId,
+    name,
+    background
+});
+export const removeComment = (itemId, commentId) => ({type: REMOVE_COMMENT, itemId, commentId});
+export const changeComment = (itemId, commentId, commentName) => ({
+    type: CHANGE_COMMENT,
+    itemId,
+    commentId,
+    commentName
+});
 //redux-thunk
 
 

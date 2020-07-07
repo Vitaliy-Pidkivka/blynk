@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import styles from './Comment.module.scss'
 
 const Comment = ({background, name, itemId, id, removeComment, changeComment}) => {
+
     const [isEditName, setIsEditName] = useState(false);
 
     const deleteComment = (e) => {
@@ -24,23 +25,31 @@ const Comment = ({background, name, itemId, id, removeComment, changeComment}) =
         }
     }
 
-    return <div className={styles.comment}
-                onClick={deleteComment}
-    >
-        <div className={styles['comment__color-square']} style={{backgroundColor: background}}>
-            <span className='sr-only'>Empty tag</span>
-        </div>
-        <div className={styles.comment__name}
-             onDoubleClick={changeCommentName}
+    return (
+        <div
+            className={styles.comment}
+            onClick={deleteComment}
         >
-            {isEditName && <input type="text"
-                                  placeholder={name}
-                                  autoFocus={true}
-                                  onKeyPress={setCommentName}
-                                  onBlur={deactivateChangeComment}
-            />}
-            {!isEditName && name}
+            <div
+                className={styles['comment__color-square']}
+                style={{backgroundColor: background}}
+            >
+                <span className='sr-only'>Empty tag</span>
+            </div>
+            <div
+                className={styles.comment__name}
+                onDoubleClick={changeCommentName}
+            >
+                {isEditName && <input
+                    type="text"
+                    placeholder={name}
+                    autoFocus={true}
+                    onKeyPress={setCommentName}
+                    onBlur={deactivateChangeComment}
+                />}
+                {!isEditName && name}
+            </div>
         </div>
-    </div>
+    )
 }
 export default Comment

@@ -20,21 +20,23 @@ const Comments = ({comments, addComment, removeComment, itemId, changeComment}) 
         setNewCommentBackground(e.currentTarget.value)
     }
 
-    const addNewComment = (e) => {
+    const addNewComment = () => {
         if (newCommentName === '') {
             setIsEmpty(true)
-        } else{
+        } else {
             let commentId = 0;
-            comments.map(comment => {
+            let id = comments.map(comment => {
                 if (comment.id > commentId) {
-                 commentId = commentId + 1
+                    commentId = commentId + 1
+                    return null
                 }
             })
-            addComment(itemId, commentId + 1 , newCommentName, newCommentBackground)
+            addComment(itemId, commentId + 1, newCommentName, newCommentBackground)
             setNewCommentBackground('#000')
             setNewCommentName('')
         }
     }
+
     const addNewItemWithKeyboard = (e) => {
         if (e.ctrlKey) {
             if (newCommentName === '') {
@@ -44,36 +46,44 @@ const Comments = ({comments, addComment, removeComment, itemId, changeComment}) 
             }
         }
     }
-    return <div className={styles.comments}>
-        <h2>Comments #{itemId + 1}</h2>
-        <div className={styles.comments__list}>
-            {comments.map(comment => <Comment {...comment}
-                                              key={comment.id}
-                                              removeComment={removeComment}
-                                              itemId={itemId}
-                                              changeComment={changeComment}
-            />)}
-        </div>
-        <div className={styles['comments__input-group']}>
-            <input type="color"
-                   onChange={onChangeColorInput}
-                   value={newCommentBackground}
-            />
-            <textarea
-                   placeholder='Type comment here'
-                   onChange={onChangeInput}
-                   className={`${isEmpty && styles.error}`}
-                   value={newCommentName}
-                   onKeyPress={addNewItemWithKeyboard}
-            />
-            <Button variant="contained"
+
+    return (
+        <div className={styles.comments}>
+            <h2>Comments #{itemId + 1}</h2>
+            <div className={styles.comments__list}>
+                {comments.map(comment => (
+                    <Comment
+                        {...comment}
+                        key={comment.id}
+                        removeComment={removeComment}
+                        itemId={itemId}
+                        changeComment={changeComment}
+                    />
+                ))}
+            </div>
+            <div className={styles['comments__input-group']}>
+                <input
+                    type="color"
+                    onChange={onChangeColorInput}
+                    value={newCommentBackground}
+                />
+                <textarea
+                    placeholder='Type comment here'
+                    onChange={onChangeInput}
+                    className={`${isEmpty && styles.error}`}
+                    value={newCommentName}
+                    onKeyPress={addNewItemWithKeyboard}
+                />
+                <Button
+                    variant="contained"
                     color="primary"
                     size="small"
                     onClick={addNewComment}
-            >
-                Add new
-            </Button>
+                >
+                    Add new
+                </Button>
+            </div>
         </div>
-    </div>
+    )
 }
 export default Comments

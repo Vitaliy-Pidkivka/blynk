@@ -7,7 +7,7 @@ const reducers = combineReducers({
     app: appReducer,
 })
 
-const createStoreWithMiddleware = applyMiddleware(save(),thunkMiddleWare)(createStore)
+const createStoreWithMiddleware = applyMiddleware(save(), thunkMiddleWare)(createStore)
 const store = createStoreWithMiddleware(reducers, load())
 window.__store__ = store
 
