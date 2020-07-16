@@ -7,8 +7,8 @@ const reducers = combineReducers({
     app: appReducer,
 })
 
-const createStoreWithMiddleware = applyMiddleware(save(), thunkMiddleWare)(createStore)
-const store = createStoreWithMiddleware(reducers, load())
+const createStoreWithMiddleware = applyMiddleware(save({ namespace: "blynk"}), thunkMiddleWare)(createStore)
+const store = createStoreWithMiddleware(reducers, load({ namespace: "blynk"}))
 window.__store__ = store
 
 export default store
